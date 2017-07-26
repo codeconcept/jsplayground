@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript par la pratique</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div>
+    <ul id="allposts">
+
+    </ul>
+  </div>
+  
+  <script>
+    /*
+    console.log("je vais à l'entretien");
+
+    const myJobPromise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('bravo, vous êtes pris');
+        // reject('Désolé, bonne chance pour la suite');
+      }, 5000);
+    });
+
+    console.log('Je retourne vivre ma vie');
+
+    // myJobPromise.then((data) => {
+    //   console.log(data);
+    // }, (data2) => {
+    //   console.log(data2);
+    // });
+
+    myJobPromise
+      .then((data) => {
+      console.log(data);
+    })
+      .catch((data2) => {
+      console.log(data2);
+    });
+
+    console.log("Je fais d'autres choses pour prouver que le code n'est pas bloqué par l'attente de la promesse");
+    */
+
+    let posts = [];
+    const allposts = document.querySelector('#allposts');
+
+    const BASE_URL = 'https://jsonplaceholder.typicode.com';
+    fetch(`${BASE_URL}/posts`)
+      .then((result) => result.json())
+      .then((blogPosts) => {
+        blogPosts.forEach(bp => posts.push(bp));
+        display(posts);
+      });
+
+    function display(collection) {
+      const lis = posts.map(bp => `<li>${bp.title}</li>`)
+                        .join('');
+      allposts.innerHTML = lis;
+    }  
+
+    // display(posts);  // TROP TOT
+    
+
+  </script>
+</body>  

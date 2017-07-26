@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript par la pratique</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <script>
+    // // object literal syntax
+    // const vehicle = { 
+    //   id: 1,
+    //   brand: 'Renault',
+    //   model: 'Clio',
+    //   color: 'rouge'
+    // };
+
+    // const vehicle = { 
+    //   id: 2,
+    //   maker: 'Renault',
+    //   type: 'Clio',
+    //   color: 'rouge'
+    // };
+
+    function Vehicle(brand, model, color) {
+      this.brand = brand;
+      this.model = model;
+      this.color = color;
+    }
+
+    const vehicle = new Vehicle('Renault', 'Clio', 'rouge');
+    const vehicle2 = new Vehicle('Peugeot', '208', 'noire');
+
+    console.log(vehicle);
+    console.log(vehicle2);
+
+
+
+
+
+
+    
+
+    
+  </script>
+</body>  

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript par la pratique</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button id="btnGreet">saluer</button>
+
+  <script>
+    
+    var btnGreet = document.querySelector('#btnGreet');
+    // anonymous function passée en callback de la fonction addEventListener
+    btnGreet.addEventListener('click', () => {
+      console.log('click');
+    });
+
+    // on spécifie des paramètres
+    function eat(food, quantity = 3) {
+      console.log(`Je mange : ${food} . Quantité mangée : ${quantity}`);
+      // console.log("je mange : " + food + " Quantié mangée : " + quantity);
+    }
+
+    eat('galette saucisse', 1); // on passe des arguments
+    
+    function Travel(destination, duration, price, pension, departureForm, other) {
+
+    }
+
+    const travelToCroatia = new Travel('Split', '1 semaine', 500, 'pension complète', 'Rennes', ''
+    );
+ 
+    
+    var isYoung = true;
+    if(isYoung) {
+      const nextAction = "aller voyager";
+    }
+
+    console.log(nextAction);
+
+
+    // console.log(test);
+    // function declaration
+    function greet(firstName) {
+      var test = 'je suis une variable de test dans une fonction';
+      console.log(btnGreet);
+      console.log('salut ' + firstName);
+
+      setTimeout(function(){
+        console.log(test);
+      }, 2000)
+    }
+
+    greet('Sam');
+
+    // function expression 
+    var sayGoodBye = function sayGoodBye (firstName) {
+      var result = "Au revoir " + firstName;
+      return result;
+    };
+  
+
+    var plane = { planeType: 'Airbus' };
+
+    // Immediatly Invoked Function Expression IIFE
+    (function(){
+      console.log('IIFE appelé !');
+      var testScope = 'crééé depuis une IIFFE';
+      console.log(testScope);
+      plane.country = 'France';
+
+      console.log(plane);
+    }(plane));
+
+    // console.log(testScope);
+
+    console.log(toto);
+
+  
+
+
+
+  </script>
+</body>  

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript par la pratique</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <div>
+    <video src="/videos/ng2BootstrapDatepicker.mp4" id="player" class="video-medium"></video>
+    <input type="range" id="speedSlider" min="0.5" max="2" value="1" step="0.1" class="vertical">
+    <span id="speed">1X</span>
+  </div>
+  <div id="controls">
+    <button id="btnPlay">play</button>
+    <button id="btnStop">stop</button>
+    chercher <input type="range" step="1" id="seekbar" value="0">
+  </div>
+  
+  <script>
+    const player = document.querySelector('#player');
+    const speedSlider = document.querySelector('#speedSlider');
+    const speed = document.querySelector('#speed');
+    const btnPlay = document.querySelector('#btnPlay');
+    const videoDuration = player.duration;
+
+    const seekbar = document.querySelector('#seekbar');
+
+    btnPlay.addEventListener('click', playVideo);
+    btnStop.addEventListener('click', stopVideo);
+    speedSlider.addEventListener('change', adjustSpeed);
+    
+    player.addEventListener('durationchange', setupSeekbar);
+    player.addEventListener('canplay', setUpPlayer);
+    player.addEventListener('ended', clean);
+
+    seekbar.addEventListener('change', seekVideo);
+    seekbar.addEventListener('timeupdate', updateUI);
+
+    function setUpPlayer() {
+      setupSeekbar();
+      player.volume = 0.5;
+    }
+
+    function clean() {
+      if(player.paused) {
+        btnPlay.innerText = 'play';
+      }
+    }
+
+    function setupSeekbar() {
+      console.log('durationchange');
+      seekbar.max = player.duration;
+    }
+
+    function seekVideo() {
+      player.currentTime = seekbar.value;
+    }
+
+    function updateUI() {
+      seekbar.value = video.currentTime;
+    }
+
+    function playVideo(evt) {
+      if(player.paused) {
+        player.play();
+        btnPlay.innerText = 'pause';
+      } else {
+        player.pause();
+        btnPlay.innerText = 'play';
+      }
+    }
+
+    function stopVideo(evt) {
+      player.currentTime = 0;
+    }
+
+    function adjustSpeed(evt) {
+      console.log(evt.target.value);
+      const currentPlaybackRate = evt.target.value;
+      speed.innerHTML = `${currentPlaybackRate}X`;
+      player.playbackRate = currentPlaybackRate;
+    }
+  </script>
+</body>  

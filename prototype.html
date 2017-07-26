@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript par la pratique</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div>azerty</div>
+  <div>qsdfgh</div>
+
+  <script>
+    function Vehicle(brand, model, color) {
+      console.log('dans le constructeur de Vehicle');
+      this.brand = brand;
+      this.model = model;
+      this.color = color;
+      this.speed = 0;
+    };
+
+    const vehicle = new Vehicle('Renault', 'Clio', 'rouge');
+    const vehicle2 = new Vehicle('Peugeot', '208', 'noire');
+    const vehicle3 = new Vehicle('VolgsWagen', 'Golf', 'bleue');
+
+    Vehicle.prototype.country = 'France';
+    Vehicle.prototype.honk = function() {
+      console.log('tuuuuuuuut');
+    };
+
+    Vehicle.prototype.accelerate = function() {
+      this.speed += 10;
+    };
+
+    Vehicle.prototype.year = 2017;
+
+    console.log(Vehicle.prototype);
+    console.log('vehicle.__proto__', vehicle.__proto__);
+    console.log('vehicle2.__proto__', vehicle2.__proto__);
+
+    vehicle3.country = 'Allemagne';
+    vehicle3.year = 2016;
+    vehicle3.driver = 'Markus';
+    console.log('vehicle3', vehicle3);
+    console.log('Object.keys(vehicle3)', Object.keys(vehicle3));
+
+    console.log('vehicle3.country', vehicle3.country);
+
+    console.log('keys de vehicle', Object.keys(vehicle));
+    console.log('vehicle.country', vehicle.country);
+
+    console.log('vehicle.__proto__ === Vehicle.prototype', vehicle.__proto__ === Vehicle.prototype);
+    
+    Vehicle.prototype = { country: 'Allemagne', speedLimitation: false};
+
+    const vehicle4 = new Vehicle('Mercedes', 'classe A', 'gris');
+    console.log(vehicle4.__proto__);
+    
+    function Bike(brand, model, color, fullPowered, exhaustPipeBrand) {
+      console.log('dans le constructeur de Bike');
+      Vehicle.call(this.brand, this.model, this.color);
+      this.fullPowered = fullPowered;
+      this.exhaustPipeBrand = exhaustPipeBrand;
+    }
+    // Object Vehicle Bike
+    Bike.prototype = Object.create(Vehicle.prototype);
+    Bike.prototype.constructor = Bike;
+    const zx6r = new Bike('Kawa', 'Ninja ZX-6R', true, "devil");
+    
+    
+  </script>
+</body> 

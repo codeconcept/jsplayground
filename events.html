@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript par la pratique</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  
+  <script>
+    /*
+    const btnSalut = document.querySelector('#btnSalut');
+    btnSalut.addEventListener('click', greet);
+
+    function greet(evt) {
+      console.log('salut', evt);
+    }
+    */
+
+    /*
+    window.addEventListener('click', locate);
+
+    function locate(evt) {
+      console.log(evt.clientX, evt.clientY);
+    }
+    */
+
+    // window.addEventListener('keydown', getKeyCode);
+
+    var keyCodes = {
+      27 : "échap",
+      32 : "barre d'espace",
+      46 : "suppr",
+      48 : "0",
+      49 : "1",
+      50 : "2",
+      51 : "3",
+      52 : "4",
+      53 : "5",
+      54 : "6",
+      55 : "7",
+      56 : "8",
+      57 : "9",
+      96 : "pavé 0 ",
+      97 : "pavé 1 ",
+      98 : "pavé 2 ",
+      99 : "pavé 3 ",
+      100 : "pavé 4 ",
+      101 : "pavé 5 ",
+      102 : "pavé 6 ",
+      103 : "pavé 7 ",
+      104 : "pavé 8 ",
+      105 : "pavé 9 ",
+      106 : "multiplié par ",
+      107 : "plus",
+      109 : "moins",
+      111 : "divisé",
+      187: "égal"
+};
+
+    window.addEventListener('keydown', allowSpecificKeys);
+    function allowSpecificKeys(evt) {
+      // if(evt.keyCode in keyCodes) {
+      //   console.log(true);
+      // } else {
+      //   console.log(false);
+      // }
+
+      if(keyCodes.hasOwnProperty(evt.keyCode)) {
+        console.log(true);
+        } else {
+          console.log(false);
+        }  
+      }
+
+   
+    let letters = [];
+    let numbers = [];
+
+    function numbersOnly(evt) {
+      // save digits only
+      if(evt.keyCode >= 96 && evt.keyCode <= 105) {
+        numbers.push(evt.keyCode);
+      }
+    }
+
+    function getKeyCode(evt) {
+      // save lletters only
+      if(evt.keyCode >=65 && evt.keyCode <= 90) {
+        letters.push(evt.keyCode);
+        return;
+      }
+
+      // handling enter key
+      console.log(evt.keyCode);
+      if(evt.keyCode === 13) {
+        console.log('Entrée');
+      }
+
+      // 37 is for left arrow
+      if(evt.keyCode === 37) {
+        console.log('gauche');
+      }
+
+      // 39 is for right arrow
+      if(evt.keyCode === 39) {
+        console.log('droite');
+      }
+    }
+
+  </script>
+</body>  

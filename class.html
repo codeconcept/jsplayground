@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript par la pratique</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <button id="btnStart">start</button>
+  <script>
+    const btnStart = document.querySelector('#btnStart');
+    btnStart.addEventListener('click', start);
+
+    function start() {
+      console.log('this dans le cb', this);
+    }
+
+    class Vehicle {
+      constructor(brand, model, color) {        
+        console.log('this depuis un constructor parent', this);
+        console.log('dans le constructor de la CLASSE Vehicle');
+        this.brand = brand;
+        this.model = model;
+        this.color = color;
+      }
+    } // end class Vehicle
+
+    class Bike extends Vehicle {
+      constructor(brand, model, color, fullPowered, exhaustPipeBrand) {
+        console.log('dans le constructor de la CLASSE Bike');
+        super(brand, model, color);
+        console.log('this depuis un constructor enfant', this);        
+        this.fullPowered = fullPowered;
+        this.exhaustPipeBrand = exhaustPipeBrand;
+      }
+    } // end class Bike
+
+    const zx6r = new Bike('Kawasaki', 'Ninja ZX-6R', 'verte', true, 'devil');
+
+    const cessna = {
+      model: '152',
+      isFlying: false,
+      takeOff: function() {
+        this.isFlying = true;
+        console.log('this depuis objet cessna', this);
+      }
+    };
+    cessna.takeOff();
+
+    const barman = {
+      name: 'Bob',
+      bottles: ['bière', 'coca', 'orange'],
+      informIsOpen: function(bottle) {
+        console.log(bottle + ' a été ouverte');
+        console.log('this dans informIsOpen()', this);
+      },
+      openBottles: function() {
+        console.log('this depuis openBottles', this);
+        this.bottles.forEach((bottle) => {
+          console.log('this depuis le cb de this.bottles.forEach()', this);
+          this.informIsOpen(bottle);
+        });
+      }
+    };
+
+
+    const user1 = {
+      civility: 'M',
+      name: {
+        first: 'Peter',
+        last: 'Parker'
+      }
+    };
+
+    const user2 = {
+      civility: 'Mme',
+      name: {
+        first: 'Elektra',
+        last: 'Natchios'
+      }
+    };
+
+    const course1 = {
+      title: 'lutter contre l\arachophobie',
+      duration: '1 semaine'
+    };
+
+    const course2 = {
+      title: 'apprendre à pardonner',
+      duration: '3 jours'
+    };
+
+    function register(course) {
+      console.log(this, course);
+      const message = `${this.civility} ${this.name.last}, vous êtes bien enregistré${this.civility === 'Mme' ? 'e': ''} au cours de ${course.title}`;
+      console.log(message);
+    }
+
+    console.log('********************');
+
+    // register.call(user1, course1);
+    const peterRegister = register.bind(user1);
+    console.log(peterRegister);
+
+    const elektraRegister = register.bind(user2);
+
+
+  </script>
+</body> 

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript par la pratique</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>aze</div>
+    <div>qsd</div>
+  
+  <script>
+    const languages = ['JavaScript', 'Python', 'C#', 'Ruby', 'PHP'];  
+
+    const musicians = [
+      {
+        id: 1, 
+        first: 'Jimi', 
+        last: 'Hendrix', 
+        instrument : 'guitare', 
+        band: 'Jimi Hendrix Experience', 
+        country: 'USA', 
+        born: '24/11/1942', 
+        dead: '18/09/1970'
+      },
+      {
+        id: 2, 
+        first: 'Stevie Ray', 
+        last: 'Vaughan', 
+        instrument : 'guitare', 
+        band: 'SRV and Double Trouble', 
+        country: 'USA', 
+        born: '24/11/1942', 
+        dead: '27/08/1990'
+      },
+      {
+        id: 3, 
+        first: 'Frank Vincent', 
+        last: 'Zappa', 
+        instrument : 'guitare', 
+        band: 'Mothers of Invention', 
+        country: 'USA', 
+        born: '21/12/1940', 
+        dead: '04/12/1993'
+      },
+      {
+        id: 4, 
+        first: 'John Francis', 
+        last: 'Pastorius', 
+        instrument : 'basse', 
+        band: 'Weather Report', 
+        country: 'USA', 
+        born: '01/12/1951', 
+        dead: '21/09/1987'
+      },
+      {
+        id: 5, 
+        first: 'Larry', 
+        last: 'Graham', 
+        instrument : 'basse', 
+        band: 'Sly and the Family Stone', 
+        country: 'USA', 
+        born: '14/08/1946', 
+        dead: ''
+      },
+      {
+        id: 6, 
+        first: 'Robert', 
+        last: 'Trujillo', 
+        instrument : 'basse', 
+        band: 'Infectious Groove', 
+        country: 'USA', 
+        born: '23/10/1964', 
+        dead: ''
+      },
+      {
+        id: 7, 
+        first: 'John', 
+        last: 'Lydon', 
+        instrument : 'chant', 
+        band: 'Sex Pistols', 
+        country: 'UK', 
+        born: '31/01/1956', 
+        dead: ''
+      },    
+      {
+        id: 8, 
+        first: 'Nina', 
+        last: 'Hagen', 
+        instrument : 'chant', 
+        band: 'Nina Hagen Band', 
+        country: 'DE', 
+        born: '11/03/1955', 
+        dead: ''
+      }   
+    ];
+
+    // let musicians2 = musicians.slice();  // ES5
+    // let musicians2 = [].concat(musicians); // ES5
+    // let musicians2 = [...musicians]; // ES6
+    let musicians2 = Array.from(musicians); // ES6
+
+
+
+     const fullNames = musicians.map((musician) => musician.first + ' ' + musician.last); 
+
+     const musiciansUS = musicians.filter((musician) => musician.country === 'USA');
+
+     let musiciansAlpha = musicians.sort((m1, m2) => {
+       if(m1.last > m2.last) {
+         return 1;
+       } else {
+         return -1;
+       }
+     });
+
+
+    const numbers = [1, 2, 3, 4, 5, 10];
+    let reducedNumbers = numbers.reduce((acc, curr) => {
+      // console.log('acc', acc);
+      // console.log('curr', curr);
+      return acc + curr;
+    }, 0);
+
+    let cart = [
+      {
+        id: 1,
+        title: 'pain',
+        price: 1.10
+      },
+      {
+        id: 2,
+        title: '2 bouteilles',
+        price: 2.00
+      }
+    ];
+
+    let totalCart = cart.reduce((acc, curr) => {
+      return acc + curr.price;
+    }, 0);
+
+
+    const transportation = ['voiture', 'vélo', 'bus', 'voiture', 'voiture', 'marche', 'vélo', 'moto'];
+    const transportObj = transportation.reduce((acc, curr) => {
+      // console.log(acc, curr);
+      if(!acc[curr]) {
+        acc[curr] = 0;
+      }
+      acc[curr] += 1;
+      return acc;
+    }, {});
+
+
+    const prices = [100, 12, 9.5, 140, 14.20];
+    const VAT = 0.2;
+    
+    const priceWithVAT = prices.reduce((acc, curr) => {
+      curr = curr + curr * VAT;
+      acc.push(curr);
+      return acc;
+    }, []);
+    
+
+
+    const britishMusicians = musicians.reduce((acc, curr) => {
+      if(curr.country === 'UK') {
+        acc.push(curr);
+      }
+      return acc;
+    }, []);
+
+    
+  </script>
+</body>  
