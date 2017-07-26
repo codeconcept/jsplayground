@@ -57,7 +57,7 @@
     
     function Bike(brand, model, color, fullPowered, exhaustPipeBrand) {
       console.log('dans le constructeur de Bike');
-      Vehicle.call(this.brand, this.model, this.color);
+      Vehicle.call(this, this.brand, this.model, this.color);
       this.fullPowered = fullPowered;
       this.exhaustPipeBrand = exhaustPipeBrand;
     }
